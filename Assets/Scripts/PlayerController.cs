@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Range(0, 1)] private float backwardSpeed;
     [SerializeField] private Animator animator;
     [SerializeField] private CharacterController movementController;
+    [SerializeField] private MeleeAttack meleeAttackController;
     private Vector3 _directionVector;
     private Vector3 _mousePoint;
     private float _speed;
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     public void MeleeAttack()
     {
-        animator.SetTrigger("MeleeAttack");
+        meleeAttackController.TryAttack();
     }
 
     private void RotateToMouse()
