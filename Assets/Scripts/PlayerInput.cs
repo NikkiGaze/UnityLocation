@@ -46,5 +46,10 @@ public class PlayerInput : MonoBehaviour
         {
             controller.MeleeAttack();
         }
+        
+        if (Input.GetMouseButtonDown(1))
+        {
+            controller.RangeAttack();
+        }
     }
 }

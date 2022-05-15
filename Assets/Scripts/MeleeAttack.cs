@@ -20,11 +20,6 @@ public class MeleeAttack : MonoBehaviour
         _lastAttackTime = 0.0f;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void TryAttack()
     {
         var currentTime = Time.time;
@@ -38,11 +33,11 @@ public class MeleeAttack : MonoBehaviour
         animator.SetTrigger(Attack);
 
         Debug.Log(_enemiesCanAttack.Count);
-        _enemiesCanAttack = _enemiesCanAttack.Where(item => item != null && item.isAlive).ToList();
+        _enemiesCanAttack = _enemiesCanAttack.Where(item => item != null && item.IsAlive()).ToList();
         
         if (_enemiesCanAttack.Count > 0)
         {
-            _enemiesCanAttack[0].TakeDamage(damage);
+            _enemiesCanAttack[0].TakeDamage(damage, false);
         }
     }
 

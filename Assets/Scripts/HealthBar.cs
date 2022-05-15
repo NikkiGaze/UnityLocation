@@ -19,7 +19,7 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         transform.position = Camera.main.WorldToScreenPoint(owner.transform.position);
-        healthText.text = healthSource.GetHP().ToString();
+        healthText.text = ((int)Mathf.Floor(healthSource.GetHP())).ToString();
     }
 
 }

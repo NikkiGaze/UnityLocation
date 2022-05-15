@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3134103123166287643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7402795935840454559}
+  m_Layer: 0
+  m_Name: ArrowPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7402795935840454559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3134103123166287643}
+  m_LocalRotation: {x: 0.0000000025115239, y: -0.313294, z: 0.000000017256927, w: 0.9496562}
+  m_LocalPosition: {x: -2.1, y: 3.2299995, z: 3.550003}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_Children: []
+  m_Father: {fileID: 7655944344045375946}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8867422444110378030
 Animator:
   serializedVersion: 3
@@ -252,6 +282,7 @@ GameObject:
   - component: {fileID: 7655944344045375940}
   - component: {fileID: 7655944344045375941}
   - component: {fileID: 7655944344045375942}
+  - component: {fileID: 256882559736295074}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -273,6 +304,7 @@ Transform:
   - {fileID: 7655944342413086897}
   - {fileID: 7655944343014711119}
   - {fileID: 5570895831867327509}
+  - {fileID: 7402795935840454559}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -293,6 +325,7 @@ MonoBehaviour:
   animator: {fileID: 8867422444110378030}
   movementController: {fileID: 7655944344045375941}
   meleeAttackController: {fileID: 7655944342413086861}
+  rangeAttackController: {fileID: 256882559736295074}
 --- !u!114 &7655944344045375940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,9 +371,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHP: 100
   HPRegen: 4
+  arrowCount: 5
   animator: {fileID: 8867422444110378030}
   parent: {fileID: 7655944344045375945}
-  _hp: 0
+--- !u!114 &256882559736295074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7655944344045375945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01e5c0c0f287a84ea01372c99321ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 40
+  cooldown: 0.5
+  animator: {fileID: 8867422444110378030}
+  arrowPrefab: {fileID: 0}
+  projectilePivot: {fileID: 7402795935840454559}
 --- !u!1001 &5387841460875125758
 PrefabInstance:
   m_ObjectHideFlags: 0

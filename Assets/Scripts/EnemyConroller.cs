@@ -1,16 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class EnemyConroller : MonoBehaviour
 {
+    [SerializeField] private PlayerController playerReference;
     [SerializeField] private PlayerFollower movementController;
     [SerializeField] private MeleeAttack attackController;
     // Start is called before the first frame update
     void Start()
     {
-        
+        movementController.SetTarget(playerReference.transform);
     }
 
     // Update is called once per frame
@@ -20,5 +22,10 @@ public class EnemyConroller : MonoBehaviour
         {
             attackController.TryAttack();
         }
+    }
+
+    private void OnDestroy()
+    {
+        playerReference.AddFrag();
     }
 }

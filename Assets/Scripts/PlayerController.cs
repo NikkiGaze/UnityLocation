@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private CharacterController movementController;
     [SerializeField] private MeleeAttack meleeAttackController;
+    [SerializeField] private RangeAttack rangeAttackController;
+    [SerializeField] private HealthStats playerStats;
+    
     private Vector3 _directionVector;
     private Vector3 _mousePoint;
     private float _speed;
@@ -57,6 +60,21 @@ public class PlayerController : MonoBehaviour
     public void MeleeAttack()
     {
         meleeAttackController.TryAttack();
+    }
+    
+    public void RangeAttack()
+    {
+        rangeAttackController.TryAttack();
+    }
+
+    public void TakeBonus(BonusName bonusName, int value)
+    {
+        playerStats.TakeBonus(bonusName, value);
+    }
+
+    public void AddFrag()
+    {
+        playerStats.AddFrag();
     }
 
     private void RotateToMouse()

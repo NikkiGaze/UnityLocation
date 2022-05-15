@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class BattleHUD : MonoBehaviour
 {
     [SerializeField] private Text heroHP;
-    [SerializeField] private Text enemyHP;
+    [SerializeField] private Text score;
+    [SerializeField] private Text arrowCount;
 
     [SerializeField] private HealthStats hero;
-    [SerializeField] private HealthStats enemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +19,8 @@ public class BattleHUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        heroHP.text = hero._hp.ToString();
-        enemyHP.text = "0";
+        heroHP.text = hero.GetHP().ToString();
+        arrowCount.text = hero.GetArrowCount().ToString();
+        score.text = hero.GetFrags().ToString();
     }
 }
