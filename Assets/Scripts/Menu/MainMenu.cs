@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Button playButton;
-    [SerializeField] private SceneAsset gameScene;
     [SerializeField] private Text bestScoreText;
     
     // Start is called before the first frame update
@@ -20,7 +19,7 @@ public class MainMenu : MonoBehaviour
     
     public void OnPlayButtonClicked()
     {
-        SceneManager.LoadScene(gameScene.name);
+        SceneManager.LoadScene(1);
     }
 
 }

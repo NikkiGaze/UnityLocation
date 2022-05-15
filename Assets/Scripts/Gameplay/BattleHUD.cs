@@ -16,7 +16,6 @@ public class BattleHUD : MonoBehaviour
     [SerializeField] private Button restartButton;
     [SerializeField] private Button exitButton;
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private SceneAsset mainMenuScene;
 
     [SerializeField] private AudioSource music;
     [SerializeField] private HealthStats hero;
@@ -71,7 +70,7 @@ public class BattleHUD : MonoBehaviour
     private void OnExitPressed()
     {
         SaveResults();
-        SceneManager.LoadScene(mainMenuScene.name);
+        SceneManager.LoadScene(0);
     }
 
     private void SaveResults()

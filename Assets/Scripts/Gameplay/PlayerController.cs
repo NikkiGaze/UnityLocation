@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField, Range(0, 1)] private float forwardSpeed;
-    [SerializeField, Range(0, 1)] private float backwardSpeed;
+    [SerializeField, Range(0, 10)] private float forwardSpeed;
+    [SerializeField, Range(0, 10)] private float backwardSpeed;
     [SerializeField] private Animator animator;
     [SerializeField] private CharacterController movementController;
     [SerializeField] private MeleeAttack meleeAttackController;
@@ -29,8 +29,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movementController.Move(_directionVector.normalized * _speed);
-        // transform.position = transform.position + _directionVector.normalized * _speed;
+        movementController.Move(_directionVector.normalized * (_speed * Time.deltaTime));
         RotateToMouse();
     }
 
