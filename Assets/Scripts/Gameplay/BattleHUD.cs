@@ -17,7 +17,8 @@ public class BattleHUD : MonoBehaviour
     [SerializeField] private Button exitButton;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private SceneAsset mainMenuScene;
-    
+
+    [SerializeField] private AudioSource music;
     [SerializeField] private HealthStats hero;
 
     public bool isPaused;
@@ -29,6 +30,7 @@ public class BattleHUD : MonoBehaviour
         pauseButton.onClick.AddListener(OnPauseClicked);
         restartButton.onClick.AddListener(OnRestartPressed);
         exitButton.onClick.AddListener(OnExitPressed);
+        music.Play();
     }
 
     // Update is called once per frame
