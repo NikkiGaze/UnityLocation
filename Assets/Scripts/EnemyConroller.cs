@@ -23,7 +23,11 @@ public class EnemyConroller : MonoBehaviour
             attackController.TryAttack();
         }
     }
-
+    public void SetPlayerReference(PlayerController player)
+    {
+        playerReference = player;
+        movementController.SetTarget(playerReference.transform);
+    }
     private void OnDestroy()
     {
         playerReference.AddFrag();

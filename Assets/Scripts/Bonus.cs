@@ -31,6 +31,7 @@ public class Bonus : MonoBehaviour
         PlayerController player = other.gameObject.GetComponent<PlayerController>();
         if (player)
         {
+            Debug.Log("Taken");
             player.TakeBonus(name, value);
             Destroy(gameObject);
         }
