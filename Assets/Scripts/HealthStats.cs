@@ -7,15 +7,16 @@ public class HealthStats : MonoBehaviour
     [SerializeField] private float MaxHP;
     [SerializeField] private int HPRegen;
     [SerializeField] private Animator animator;
-
+    [SerializeField] private GameObject parent;
     public float _hp;
-
+    public bool isAlive;
     private static readonly int Damage = Animator.StringToHash("TakeDamage");
 
     // Start is called before the first frame update
     void Start()
     {
         _hp = MaxHP;
+        isAlive = true;
     }
 
     // Update is called once per frame
@@ -27,12 +28,19 @@ public class HealthStats : MonoBehaviour
 
     public void TakeDamage(float count)
     {
+        // Debug.Log("Take damage");
         _hp -= count;
         _hp = Mathf.Clamp(_hp, 0, MaxHP);
         animator.SetTrigger(Damage);
         if (_hp <= 0)
         {
-            Destroy(gameObject);
+            Destroy(parent);
+            isAlive = false;
         }
+    }
+
+    public float GetHP()
+    {
+        return _hp;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MeleeAttack : MonoBehaviour
@@ -35,6 +36,10 @@ public class MeleeAttack : MonoBehaviour
         _lastAttackTime = currentTime;
         
         animator.SetTrigger(Attack);
+
+        Debug.Log(_enemiesCanAttack.Count);
+        _enemiesCanAttack = _enemiesCanAttack.Where(item => item != null && item.isAlive).ToList();
+        
         if (_enemiesCanAttack.Count > 0)
         {
             _enemiesCanAttack[0].TakeDamage(damage);
@@ -43,7 +48,7 @@ public class MeleeAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("enter");
+        // Debug.Log(other.name);
         HealthStats stats = other.gameObject.GetComponent<HealthStats>();
         if (stats)
         {
@@ -53,7 +58,7 @@ public class MeleeAttack : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("exit");
+        // Debug.Log("exit");
         HealthStats stats = other.gameObject.GetComponent<HealthStats>();
         if (stats && _enemiesCanAttack.Contains(stats))
         {

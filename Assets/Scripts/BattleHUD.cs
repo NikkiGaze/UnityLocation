@@ -20,6 +20,6 @@ public class BattleHUD : MonoBehaviour
     void Update()
     {
         heroHP.text = hero._hp.ToString();
-        enemyHP.text = enemy._hp.ToString();
+        enemyHP.text = "0";
     }
 }
