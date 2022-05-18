@@ -878,7 +878,7 @@ MonoBehaviour:
   - {fileID: 2007911327}
   - {fileID: 1728313429}
   - {fileID: 545991110}
-  enemySpawncooldown: 10
+  enemySpawncooldown: 20
   maxEnemyCount: 20
 --- !u!4 &203135508
 Transform:
