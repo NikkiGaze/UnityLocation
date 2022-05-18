@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -16,6 +15,11 @@ public class BattleHUD : MonoBehaviour
     [SerializeField] private Button restartButton;
     [SerializeField] private Button exitButton;
     [SerializeField] private GameObject pauseMenu;
+    
+    [SerializeField] private GameObject nicknamePanel;
+    [SerializeField] private Button saveButton; 
+    [SerializeField] private Button cancelButton;
+    [SerializeField] private Text nicknameText;
 
     [SerializeField] private AudioSource music;
     [SerializeField] private HealthStats hero;
@@ -26,6 +30,7 @@ public class BattleHUD : MonoBehaviour
     {
         isPaused = false;
         pauseMenu.SetActive(false);
+        nicknamePanel.SetActive(false);
         pauseButton.onClick.AddListener(OnPauseClicked);
         restartButton.onClick.AddListener(OnRestartPressed);
         exitButton.onClick.AddListener(OnExitPressed);
@@ -63,19 +68,31 @@ public class BattleHUD : MonoBehaviour
 
     private void OnRestartPressed()
     {
-        SaveResults();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Exit(SceneManager.GetActiveScene().name);
     }
     
     private void OnExitPressed()
     {
-        SaveResults();
-        SceneManager.LoadScene(0);
+        Exit("MainMenu");
     }
 
-    private void SaveResults()
+    private void FinishScene(string nextSceneName, bool saveResults)
     {
-        int bestScore = PlayerPrefs.GetInt("highScore");
-        PlayerPrefs.SetInt("highScore", Mathf.Max(bestScore,hero.GetFrags()));
+        if (saveResults)
+        {
+            DatabaseService.Instance().AddToLeaderboard(nicknameText.text,hero.GetFrags());
+        }
+
+        SceneManager.LoadScene(nextSceneName);
+    }
+    
+    private void Exit(string nextSceneName)
+    {
+        nicknamePanel.SetActive(true);
+        pauseMenu.SetActive(false);
+
+        Debug.Log(nextSceneName);
+        saveButton.onClick.AddListener(delegate { FinishScene(nextSceneName, true);});
+        cancelButton.onClick.AddListener(delegate { FinishScene(nextSceneName, false);});
     }
 }
