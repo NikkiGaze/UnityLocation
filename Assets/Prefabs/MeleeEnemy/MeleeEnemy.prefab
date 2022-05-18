@@ -106,6 +106,7 @@ MonoBehaviour:
   arrowCount: 0
   animator: {fileID: 6147629798471150437}
   arrowBonus: {fileID: 396974574378104421, guid: d7bb31e945968b7429aa8b72ff7a5376, type: 3}
+  isPlayer: 0
 --- !u!143 &304645066883914723
 CharacterController:
   m_ObjectHideFlags: 0
@@ -235,6 +236,7 @@ MonoBehaviour:
   damage: 30
   cooldown: 4
   animator: {fileID: 6147629798471150437}
+  stats: {fileID: 304645066883914721}
 --- !u!1 &592084392125959353
 GameObject:
   m_ObjectHideFlags: 0

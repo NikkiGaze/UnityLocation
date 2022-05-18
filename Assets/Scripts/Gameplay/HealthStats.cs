@@ -10,6 +10,7 @@ public class HealthStats : MonoBehaviour
     [SerializeField] private int arrowCount;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject arrowBonus;
+    [SerializeField] private bool isPlayer;
     private float _hp;
     private static readonly int Damage = Animator.StringToHash("TakeDamage");
     private int _arrowsInside;
@@ -101,4 +102,8 @@ public class HealthStats : MonoBehaviour
         _frags++;
     }
 
+    public bool CanAttack(HealthStats other)
+    {
+        return other.isPlayer != isPlayer;
+    }
 }

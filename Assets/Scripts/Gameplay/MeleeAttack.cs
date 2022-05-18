@@ -9,6 +9,7 @@ public class MeleeAttack : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float cooldown;
     [SerializeField] private Animator animator;
+    [SerializeField] private HealthStats stats;
     private List<HealthStats> _enemiesCanAttack;
     private float _lastAttackTime;
     private static readonly int Attack = Animator.StringToHash("MeleeAttack");
@@ -32,7 +33,7 @@ public class MeleeAttack : MonoBehaviour
         
         animator.SetTrigger(Attack);
 
-        Debug.Log(_enemiesCanAttack.Count);
+        // Debug.Log(_enemiesCanAttack.Count);
         _enemiesCanAttack = _enemiesCanAttack.Where(item => item != null && item.IsAlive()).ToList();
         
         if (_enemiesCanAttack.Count > 0)
@@ -44,17 +45,23 @@ public class MeleeAttack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Debug.Log(other.name);
-        HealthStats stats = other.gameObject.GetComponent<HealthStats>();
-        if (stats)
+        HealthStats otherStats = other.gameObject.GetComponent<HealthStats>();
+        if (!otherStats)
         {
-            _enemiesCanAttack.Add(stats);
+            return;
+        }
+
+        // Debug.Log(stats.CanAttack(otherStats));
+        if (stats.CanAttack(otherStats))
+        {
+            _enemiesCanAttack.Add(otherStats);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         // Debug.Log("exit");
-        HealthStats stats = other.gameObject.GetComponent<HealthStats>();
+        var stats = GetComponent<HealthStats>();
         if (stats && _enemiesCanAttack.Contains(stats))
         {
             _enemiesCanAttack.Remove(stats);

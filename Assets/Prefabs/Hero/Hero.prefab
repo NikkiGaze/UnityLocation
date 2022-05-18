@@ -2421,6 +2421,7 @@ MonoBehaviour:
   damage: 50
   cooldown: 1
   animator: {fileID: 8867422444110378030}
+  stats: {fileID: 7655944344045375942}
 --- !u!54 &7655944342413086862
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2677,6 +2678,7 @@ MonoBehaviour:
   arrowCount: 5
   animator: {fileID: 8867422444110378030}
   arrowBonus: {fileID: 0}
+  isPlayer: 1
 --- !u!114 &256882559736295074
 MonoBehaviour:
   m_ObjectHideFlags: 0
