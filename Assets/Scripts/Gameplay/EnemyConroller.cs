@@ -28,8 +28,4 @@ public class EnemyConroller : MonoBehaviour
         playerReference = player;
         movementController.SetTarget(playerReference.transform);
     }
-    private void OnDestroy()
-    {
-        playerReference.AddFrag();
-    }
 }

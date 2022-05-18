@@ -10,7 +10,8 @@ public class HealthStats : MonoBehaviour
     [SerializeField] private int arrowCount;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject arrowBonus;
-    [SerializeField] private bool isPlayer;
+    [SerializeField] private GameController gameController;
+    [SerializeField] public bool isPlayer;
     private float _hp;
     private static readonly int Damage = Animator.StringToHash("TakeDamage");
     private int _arrowsInside;
@@ -31,6 +32,11 @@ public class HealthStats : MonoBehaviour
         _hp = Mathf.Clamp(_hp, 0, MaxHP);
     }
 
+    public void SetGameController(GameController controller)
+    {
+        gameController = controller;
+    }
+
     public void TakeDamage(float count, bool collectArrow)
     {
         // Debug.Log("Take damage");
@@ -49,7 +55,7 @@ public class HealthStats : MonoBehaviour
                 loot.GetComponent<Bonus>().Set(BonusName.Arrows, _arrowsInside);
                 loot.transform.position = transform.position;
             }
-            Destroy(gameObject);
+            gameController.Kill(this);
         }
     }
 

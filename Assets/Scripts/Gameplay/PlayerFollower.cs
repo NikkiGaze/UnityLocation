@@ -22,6 +22,10 @@ public class PlayerFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_playerReference)
+        {
+            return;
+        }
         _aiAgent.destination = _playerReference.position;
         float dist = Vector3.Distance(transform.position, _aiAgent.destination);
         
